@@ -1,0 +1,652 @@
+/* ==========================================================================
+   Task Management App - Design System
+   A comprehensive CSS design system with light/dark theming,
+   component styles, animations, and responsive breakpoints.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties (Theming)
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Color Palette - Light Mode (default) */
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-accent: #5b8bf7;
+  --color-accent-hover: #4a7ae6;
+  --color-text: #333333;
+  --color-text-muted: #888888;
+  --color-border: #e8e8e8;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Color Palette - Dark Mode */
+[data-theme="dark"] {
+  --color-bg: #1a1a1a;
+  --color-surface: #2d2d2d;
+  --color-accent: #6b9bff;
+  --color-accent-hover: #5a8aee;
+  --color-text: #e0e0e0;
+  --color-text-muted: #b0b0b0;
+  --color-border: #404040;
+}
+
+/* --------------------------------------------------------------------------
+   2. Global Reset and Base Styles
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  transition: background-color 300ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout - App Container
+   -------------------------------------------------------------------------- */
+
+.app-container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   4. App Header
+   -------------------------------------------------------------------------- */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-bg);
+  padding: 20px 0;
+}
+
+.app-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: background-color 200ms ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--color-border);
+}
+
+/* --------------------------------------------------------------------------
+   5. Task Form
+   -------------------------------------------------------------------------- */
+
+.task-form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-form input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 200ms ease;
+}
+
+.task-form input:focus {
+  border-color: var(--color-accent);
+}
+
+.task-form button {
+  padding: 12px 24px;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 200ms ease;
+}
+
+.task-form button:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+.task-form button:active {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   6. Search Container
+   -------------------------------------------------------------------------- */
+
+.search-container {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px 14px 10px 40px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 200ms ease;
+}
+
+.search-container input:focus {
+  border-color: var(--color-accent);
+}
+
+/* Search clear button */
+.search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.search-clear:hover {
+  color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   7. Filter Tabs
+   -------------------------------------------------------------------------- */
+
+.filter-tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0;
+}
+
+.filter-tab {
+  padding: 10px 18px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: var(--font-family);
+  color: var(--color-text-muted);
+  font-weight: 500;
+  transition: all 200ms ease;
+}
+
+.filter-tab.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+  font-weight: 600;
+}
+
+.filter-tab:hover:not(.active) {
+  color: var(--color-text);
+}
+
+.filter-count {
+  font-size: 0.75rem;
+  background: var(--color-border);
+  border-radius: 10px;
+  padding: 1px 7px;
+  margin-left: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Task List
+   -------------------------------------------------------------------------- */
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Task Item
+   -------------------------------------------------------------------------- */
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--color-surface);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  animation: fadeIn 300ms ease;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Task Checkbox */
+.task-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 200ms ease;
+  background-color: transparent;
+}
+
+.task-checkbox:checked {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  animation: checkboxPop 200ms ease;
+}
+
+.task-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 6px;
+  height: 10px;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+@keyframes checkboxPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Task Content */
+.task-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-title {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  word-break: break-word;
+  cursor: pointer;
+}
+
+.task-title:not(.editing):hover {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--color-text-muted);
+  text-underline-offset: 3px;
+}
+
+.task-title:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.task-title:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.task-title.editing input {
+  width: 100%;
+  padding: 4px 8px;
+  border: 2px solid var(--color-accent);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: var(--font-family);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+}
+
+.task-dates {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* Completed Task */
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+/* Task Edit Button */
+.task-edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 200ms ease, background-color 200ms ease, color 200ms ease;
+}
+
+.task-item:hover .task-edit-btn {
+  opacity: 1;
+}
+
+.task-edit-btn:hover {
+  background-color: rgba(91, 139, 247, 0.1);
+  color: var(--color-accent);
+}
+
+/* Task Edit Actions (Save/Cancel) */
+.task-edit-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.task-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.task-action-save { color: #4caf50; }
+.task-action-save:hover { background-color: rgba(76, 175, 80, 0.1); color: #388e3c; }
+.task-action-cancel { color: var(--color-text-muted); }
+.task-action-cancel:hover { background-color: rgba(255, 82, 82, 0.1); color: #ff5252; }
+
+/* Task Delete Button */
+.task-delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 200ms ease, background-color 200ms ease, color 200ms ease;
+}
+
+.task-item:hover .task-delete-btn {
+  opacity: 1;
+}
+
+.task-delete-btn:hover {
+  background-color: #ff52521a;
+  color: #ff5252;
+}
+
+.task-delete-btn:active {
+  background-color: #ff525233;
+}
+
+/* Focus styles for action buttons */
+.task-action-btn:focus-visible,
+.task-edit-btn:focus-visible,
+.task-delete-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Character Counter */
+.task-char-counter {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+  text-align: right;
+  transition: color 200ms ease;
+}
+
+.task-char-counter.warning { color: #ff9800; font-weight: 600; }
+
+/* --------------------------------------------------------------------------
+   10. Empty State
+   -------------------------------------------------------------------------- */
+
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+}
+
+.empty-state svg {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.empty-state-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.empty-state-hint {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   11. Toast Notification
+   -------------------------------------------------------------------------- */
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: #ff5252;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: all 300ms ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   12. Spinner / Loading
+   -------------------------------------------------------------------------- */
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  padding: 48px;
+}
+
+.spinner::after {
+  content: "";
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Submit button spinner */
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+}
+
+/* --------------------------------------------------------------------------
+   13. Keyframe Animations
+   -------------------------------------------------------------------------- */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* --------------------------------------------------------------------------
+   14. Utility Classes
+   -------------------------------------------------------------------------- */
+
+.hidden {
+  display: none !important;
+}
+
+/* Input error feedback */
+.task-form input.input-error {
+  border-color: #ff5252;
+  animation: shake 300ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   15. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .task-form {
+    flex-direction: column;
+  }
+
+  .task-form button {
+    width: 100%;
+  }
+
+  body {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.35rem;
+  }
+
+  .empty-state svg {
+    width: 80px;
+    height: 80px;
+  }
+
+  .filter-tab {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Touch device support */
+@media (hover: none) {
+  .task-edit-btn,
+  .task-delete-btn {
+    opacity: 1;
+  }
+}
