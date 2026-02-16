@@ -177,7 +177,7 @@ tests/              # Entegrasyon testleri
 ### Karar Noktaları ve Zorluklar
 
 - **Veritabanı Kararı:** İlanda "in-memory" yeterli denilse de, gerçek dünya senaryolarına daha yakın olması projenin devamlılık sağlayan bir hafıza sistemi sahip olması adına SQLite kullanma kararı aldım.
-- **Proje Kapsamı**: İlandaki proje kapsamını bazı noktalardan genişleterek (yeni iki endpoint, yeni bir data field ve frontend) uygulamanın daha tamamlanmış hissettirmesini hedefledim.
+- **Proje Kapsamı**: İlandaki proje kapsamını bazı noktalardan genişleterek (yeni endpointler, yeni bir data field ve frontend) uygulamanın daha tamamlanmış hissettirmesini hedefledim.
 - **Hata Yönetimi:** Özellikle asenkron işlemlerde kod tekrarını önlemek adına `async-handler` ve merkezi bir `error-handler` yapısı kurguladım.
 - **Kullanılabilirlik:** API'nin sadece bir backend projesi olarak kalmaması, test eden kişinin sonuçları görsel olarak da görebilmesi için basit bir frontend arayüzü eklemeye karar verdim.
 
